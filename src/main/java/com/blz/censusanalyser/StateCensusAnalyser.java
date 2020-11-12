@@ -10,7 +10,7 @@ import com.opencsv.bean.CsvToBean;
 import com.opencsv.bean.CsvToBeanBuilder;
 
 public class StateCensusAnalyser {
-	public int loadStateCensusData(String csvFilePath) {
+	public int loadStateCensusData(String csvFilePath) throws CensusAnalyserException {
 		int numberOfRecords = 0;
 		try {
 			Reader reader = Files.newBufferedReader(Paths.get(csvFilePath));
@@ -24,8 +24,11 @@ public class StateCensusAnalyser {
 				CSVStateCensus stateCensusData = censusCSVIterator.next();
 			}
 		} catch (IOException e) {
-			e.printStackTrace();
+			throw new CensusAnalyserException(e.getMessage(),
+					CensusAnalyserException.ExceptionType.CENSUS_FILE_PROBLEM);
+
 		}
+
 		return numberOfRecords;
 	}
 
