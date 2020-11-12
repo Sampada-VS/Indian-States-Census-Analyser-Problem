@@ -40,10 +40,10 @@ public class StateCensusAnalyser {
 			csvToBeanBuilder.withType(CSVStateCode.class);
 			csvToBeanBuilder.withIgnoreLeadingWhiteSpace(true);
 			CsvToBean<CSVStateCode> csvToBean = csvToBeanBuilder.build();
-			Iterator<CSVStateCode> censusCSVIterator = csvToBean.iterator();
-			while (censusCSVIterator.hasNext()) {
+			Iterator<CSVStateCode> codeCSVIterator = csvToBean.iterator();
+			while (codeCSVIterator.hasNext()) {
 				numberOfRecords++;
-				CSVStateCode stateCodeData = censusCSVIterator.next();
+				CSVStateCode stateCodeData = codeCSVIterator.next();
 			}
 		} catch (IOException e) {
 			throw new CensusAnalyserException(e.getMessage(),

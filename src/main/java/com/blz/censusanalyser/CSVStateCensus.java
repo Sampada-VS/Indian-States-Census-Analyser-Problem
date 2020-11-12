@@ -21,4 +21,3 @@ public class CSVStateCensus {
 				+ areaInSqKm + '\'' + ", DensityPerSqKm='" + densityPerSqKm + '\'' + '}';
 	}
 }
-F
