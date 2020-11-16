@@ -142,4 +142,15 @@ public class StateCensusAnalyserTest {
 		} catch (CensusAnalyserException e) {
 		}
 	}
+
+	@Test
+	public void givenIndiaStateCodeCSV_WhenSortByStateCode_ShouldReturnSortedListOfStates() {
+		try {
+			stateCensusAnalyser.loadStateCodeData(INDIA_STATE_CODE_CSV_FILE_PATH);
+			String sortedCodeData = stateCensusAnalyser.getStateCodeWiseSortedData();
+			CSVStateCode[] codeCSV = new Gson().fromJson(sortedCodeData, CSVStateCode[].class);
+			assertEquals("Andhra Pradesh New", codeCSV[0].getStateName());
+		} catch (CensusAnalyserException e) {
+		}
+	}
 }

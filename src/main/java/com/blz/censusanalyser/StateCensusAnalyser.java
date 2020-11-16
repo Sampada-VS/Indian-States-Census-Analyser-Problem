@@ -13,10 +13,12 @@ import com.google.gson.Gson;
 
 public class StateCensusAnalyser {
 	static List<CSVStateCensus> censusCSVList;
+	static List<CSVStateCode> codeCSVList;
+
 	public int loadStateCensusData(String csvFilePath) throws CensusAnalyserException {
 		try (Reader reader = Files.newBufferedReader(Paths.get(csvFilePath));) {
 			ICSVBuilder csvBuilder = CSVBuilderFactory.creteCSVBuilder();
-			censusCSVList= csvBuilder.getCSVFileList(reader, CSVStateCensus.class);
+			censusCSVList = csvBuilder.getCSVFileList(reader, CSVStateCensus.class);
 			return censusCSVList.size();
 		} catch (IOException e) {
 			throw new CensusAnalyserException(e.getMessage(),
@@ -29,7 +31,7 @@ public class StateCensusAnalyser {
 	public int loadStateCodeData(String csvFilePath) throws CensusAnalyserException {
 		try (Reader reader = Files.newBufferedReader(Paths.get(csvFilePath));) {
 			ICSVBuilder csvBuilder = CSVBuilderFactory.creteCSVBuilder();
-			List<CSVStateCode> codeCSVList = csvBuilder.getCSVFileList(reader, CSVStateCode.class);
+			codeCSVList = csvBuilder.getCSVFileList(reader, CSVStateCode.class);
 			return codeCSVList.size();
 		} catch (IOException e) {
 			throw new CensusAnalyserException(e.getMessage(),
@@ -54,6 +56,12 @@ public class StateCensusAnalyser {
 		String sortByStateCensusJson = new Gson().toJson(sortByStateList);
 		return sortByStateCensusJson;
 	}
-	
+
+	public String getStateCodeWiseSortedData() {
+		List<CSVStateCode> sortByStateCodeList = codeCSVList.stream()
+				.sorted(Comparator.comparing(CSVStateCode::getStateCode)).collect(Collectors.toList());
+		String sortByStateCodeJson = new Gson().toJson(sortByStateCodeList);
+		return sortByStateCodeJson;
+	}
 
 }
