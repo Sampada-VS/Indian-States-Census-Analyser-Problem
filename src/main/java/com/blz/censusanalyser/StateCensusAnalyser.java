@@ -4,14 +4,19 @@ import java.io.IOException;
 import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
+
+import com.google.gson.Gson;
 
 public class StateCensusAnalyser {
+	static List<CSVStateCensus> censusCSVList;
 	public int loadStateCensusData(String csvFilePath) throws CensusAnalyserException {
 		try (Reader reader = Files.newBufferedReader(Paths.get(csvFilePath));) {
 			ICSVBuilder csvBuilder = CSVBuilderFactory.creteCSVBuilder();
-			List<CSVStateCensus> censusCSVList = csvBuilder.getCSVFileList(reader, CSVStateCensus.class);
+			censusCSVList= csvBuilder.getCSVFileList(reader, CSVStateCensus.class);
 			return censusCSVList.size();
 		} catch (IOException e) {
 			throw new CensusAnalyserException(e.getMessage(),
@@ -42,4 +47,13 @@ public class StateCensusAnalyser {
 		}
 		return numberOfRecords;
 	}
+
+	public String getStateWiseSortedCensusData() {
+		List<CSVStateCensus> sortByStateList = censusCSVList.stream()
+				.sorted(Comparator.comparing(CSVStateCensus::getState)).collect(Collectors.toList());
+		String sortByStateCensusJson = new Gson().toJson(sortByStateList);
+		return sortByStateCensusJson;
+	}
+	
+
 }
