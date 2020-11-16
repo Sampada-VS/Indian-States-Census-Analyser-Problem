@@ -18,9 +18,13 @@ public class CSVStateCensus {
 	public String getState() {
 		return state;
 	}
-	
+
 	public int getPopulation() {
 		return population;
+	}
+
+	public int getDensity() {
+		return densityPerSqKm;
 	}
 
 	@Override

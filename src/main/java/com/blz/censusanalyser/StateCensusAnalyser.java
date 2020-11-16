@@ -71,4 +71,11 @@ public class StateCensusAnalyser {
 		return sortByStatePopulationJson;
 	}
 
+	public String getDensityWiseSortedCensusData() {
+		List<CSVStateCensus> sortByDensityStateList = censusCSVList.stream()
+				.sorted(Comparator.comparing(CSVStateCensus::getDensity).reversed()).collect(Collectors.toList());
+		String sortByDensityStateJson = new Gson().toJson(sortByDensityStateList);
+		return sortByDensityStateJson;
+	}
+
 }
