@@ -64,4 +64,11 @@ public class StateCensusAnalyser {
 		return sortByStateCodeJson;
 	}
 
+	public String getPopulationWiseSortedCensusData() {
+		List<CSVStateCensus> sortByStatePopulationList = censusCSVList.stream()
+				.sorted(Comparator.comparing(CSVStateCensus::getPopulation).reversed()).collect(Collectors.toList());
+		String sortByStatePopulationJson = new Gson().toJson(sortByStatePopulationList);
+		return sortByStatePopulationJson;
+	}
+
 }

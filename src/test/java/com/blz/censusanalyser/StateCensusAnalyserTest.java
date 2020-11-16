@@ -139,6 +139,7 @@ public class StateCensusAnalyserTest {
 			String sortedCensusData = stateCensusAnalyser.getStateWiseSortedCensusData();
 			CSVStateCensus[] censusCSV = new Gson().fromJson(sortedCensusData, CSVStateCensus[].class);
 			assertEquals("Andhra Pradesh", censusCSV[0].state);
+			assertEquals("West Bengal", censusCSV[28].state);
 		} catch (CensusAnalyserException e) {
 		}
 	}
@@ -150,6 +151,19 @@ public class StateCensusAnalyserTest {
 			String sortedCodeData = stateCensusAnalyser.getStateCodeWiseSortedData();
 			CSVStateCode[] codeCSV = new Gson().fromJson(sortedCodeData, CSVStateCode[].class);
 			assertEquals("Andhra Pradesh New", codeCSV[0].getStateName());
+			assertEquals("West Bengal", codeCSV[36].getStateName());
+		} catch (CensusAnalyserException e) {
+		}
+	}
+
+	@Test
+	public void givenIndiaStateCensusCSV_WhenSortByPopulation_ShouldReturnSortedList() {
+		try {
+			stateCensusAnalyser.loadStateCensusData(INDIA_CENSUS_CSV_FILE_PATH);
+			String reverseSortedCensusByPopulationData = stateCensusAnalyser.getPopulationWiseSortedCensusData();
+			CSVStateCensus[] censusPopulationCSV = new Gson().fromJson(reverseSortedCensusByPopulationData,CSVStateCensus[].class);
+			assertEquals("Uttar Pradesh", censusPopulationCSV[0].state);
+			assertEquals("Sikkim", censusPopulationCSV[28].state);
 		} catch (CensusAnalyserException e) {
 		}
 	}
