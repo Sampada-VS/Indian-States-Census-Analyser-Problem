@@ -59,7 +59,6 @@ public class StateCensusAnalyserTest {
 		} catch (RuntimeException e) {
 			e.printStackTrace();
 		}
-
 	}
 
 	@Test
@@ -80,7 +79,6 @@ public class StateCensusAnalyserTest {
 		} catch (RuntimeException e) {
 			e.printStackTrace();
 		}
-
 	}
 
 	@Test
@@ -110,7 +108,6 @@ public class StateCensusAnalyserTest {
 		} catch (RuntimeException e) {
 			e.printStackTrace();
 		}
-
 	}
 
 	@Test
@@ -131,6 +128,5 @@ public class StateCensusAnalyserTest {
 		} catch (RuntimeException e) {
 			e.printStackTrace();
 		}
-
 	}
 }
