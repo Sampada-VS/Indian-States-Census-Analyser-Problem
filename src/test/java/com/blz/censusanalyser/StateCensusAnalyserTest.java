@@ -50,7 +50,7 @@ public class StateCensusAnalyserTest {
 	}
 
 	@Test
-	public void givenIndiaStateCensusCSV_WhenWrongFileType_ShouldThrowException() throws CensusAnalyserException{
+	public void givenIndiaStateCensusCSV_WhenWrongFileType_ShouldThrowException() throws CensusAnalyserException {
 
 		int numOfRecords;
 		try {
@@ -67,21 +67,22 @@ public class StateCensusAnalyserTest {
 		try {
 			int numOfRecords = stateCensusAnalyser.loadStateCensusData(CENSUS_WRONG_CSV_FILE_DELIMITER);
 			assertEquals(29, numOfRecords);
-		}catch(RuntimeException e) {
+		} catch (RuntimeException e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	@Test
-	public void givenIndiaStateCensusCSV_WhenIncorrectHeader_ShouldThrowException() throws CensusAnalyserException  {
+	public void givenIndiaStateCensusCSV_WhenIncorrectHeader_ShouldThrowException() throws CensusAnalyserException {
 		try {
 			int numOfRecords = stateCensusAnalyser.loadStateCensusData(CENSUS_WRONG_CSV_FILE_HEADER);
 			assertEquals(29, numOfRecords);
-		}catch(RuntimeException e) {
+		} catch (RuntimeException e) {
 			e.printStackTrace();
 		}
-		
+
 	}
+
 	@Test
 	public void givenIndiaStateCodeCSVFile_ShouldReturnCorrectRecords() throws CensusAnalyserException {
 		int numOfRecords = stateCensusAnalyser.loadStateCodeData(INDIA_STATE_CODE_CSV_FILE_PATH);
@@ -100,7 +101,7 @@ public class StateCensusAnalyserTest {
 	}
 
 	@Test
-	public void givenIndiaStateCodeCSV_WhenWrongFileType_ShouldThrowException() throws CensusAnalyserException{
+	public void givenIndiaStateCodeCSV_WhenWrongFileType_ShouldThrowException() throws CensusAnalyserException {
 
 		int numOfRecords;
 		try {
@@ -117,19 +118,19 @@ public class StateCensusAnalyserTest {
 		try {
 			int numOfRecords = stateCensusAnalyser.loadStateCodeData(CODE_WRONG_CSV_FILE_DELIMITER);
 			assertEquals(35, numOfRecords);
-		}catch(RuntimeException e) {
+		} catch (RuntimeException e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	@Test
-	public void givenIndiaStateCodeCSV_WhenIncorrectHeader_ShouldThrowException() throws CensusAnalyserException  {
+	public void givenIndiaStateCodeCSV_WhenIncorrectHeader_ShouldThrowException() throws CensusAnalyserException {
 		try {
 			int numOfRecords = stateCensusAnalyser.loadStateCodeData(CODE_WRONG_CSV_FILE_HEADER);
 			assertEquals(35, numOfRecords);
-		}catch(RuntimeException e) {
+		} catch (RuntimeException e) {
 			e.printStackTrace();
 		}
-		
+
 	}
 }
