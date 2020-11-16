@@ -78,4 +78,11 @@ public class StateCensusAnalyser {
 		return sortByDensityStateJson;
 	}
 
+	public String getAreaWiseSortedCensusData() {
+		List<CSVStateCensus> sortByAreaStateList = censusCSVList.stream()
+				.sorted(Comparator.comparing(CSVStateCensus::getArea).reversed()).collect(Collectors.toList());
+		String sortByAreaStateJson = new Gson().toJson(sortByAreaStateList);
+		return sortByAreaStateJson;
+	}
+
 }

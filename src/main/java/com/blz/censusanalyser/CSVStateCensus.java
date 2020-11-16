@@ -27,6 +27,10 @@ public class CSVStateCensus {
 		return densityPerSqKm;
 	}
 
+	public int getArea() {
+		return areaInSqKm;
+	}
+
 	@Override
 	public String toString() {
 		return "IndiaCensusCSV{" + "State='" + state + '\'' + ", Population='" + population + '\'' + ", AreaInSqKm='"
